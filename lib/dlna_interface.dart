@@ -3,7 +3,7 @@ import 'package:flutter/services.dart';
 
 abstract class DlnaService{
   Function searchCallback;
-  Function positionCallback;
+  ValueChanged positionCallback;
 
   @protected
   Future<void> init();
@@ -12,7 +12,7 @@ abstract class DlnaService{
     this.searchCallback = searchCallback;
   }
 
-  void setPositionCallback(Function positionCallback) {
+  void setPositionCallback(ValueChanged positionCallback) {
     this.positionCallback = positionCallback;
   }
 

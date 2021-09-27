@@ -5,7 +5,7 @@ class DlnaIosService extends DlnaService{
   MethodChannel _channel = const MethodChannel('flutter_dlna');
 
   Function searchCallback;
-  Function positionCallback;
+  ValueChanged positionCallback;
 
   @override
   Future<void> init() async {

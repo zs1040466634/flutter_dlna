@@ -9,6 +9,7 @@ import 'package:flutter_dlna/dlna_ios.dart';
 class FlutterDlna {
   DlnaService dlnaService;
   Timer _timer;
+  bool isPlay = false;
 
   Future<void> init() async{
     if (Platform.isIOS) {
@@ -46,11 +47,13 @@ class FlutterDlna {
 
   //启动和播放
   Future<void> startAndPlay() async{
+    isPlay = true;
     await dlnaService.startAndPlay();
   }
 
   //停止
   Future<void> stop() async{
+    isPlay = false;
     await dlnaService.stop();
   }
 
@@ -61,7 +64,12 @@ class FlutterDlna {
         await dlnaService.getPositionInfo();
       });
     }
+  }
 
+  // 暂停
+  Future<void> pause() async {
+    isPlay = false;
+    await dlnaService.pause();
   }
 
   void dispose() {

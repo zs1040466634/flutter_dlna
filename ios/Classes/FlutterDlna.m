@@ -61,6 +61,12 @@ static FlutterMethodChannel *methodChannel;
   }else if([@"volume" isEqualToString:call.method]){
       [_dlnaManager volumeChanged:call.arguments];
       result(@"ios dlna volume");
+  } else if([@"positionInfo" isEqualToString:call.method]){
+      [_dlnaManager getPositionInfo:^(CLUPnPAVPositionInfo *info) {
+          NSArray *keys = @[@"trackDuration",@"absTime",@"relTime"];
+          NSDictionary *dic = [info dictionaryWithValuesForKeys:keys];
+          result(dic);
+      }];
   }else {
     result(FlutterMethodNotImplemented);
   }

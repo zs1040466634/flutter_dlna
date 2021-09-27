@@ -6,6 +6,7 @@ import 'dlna/didl.dart';
 import 'dlna/dlna_action_result.dart';
 import 'dlna/dlna_device.dart';
 import 'dlna/dlna_manager.dart';
+import 'dlna/soap/position_info.dart';
 
 class DlnaAndroidService extends DlnaService {
   DLNAManager dlnaManager = DLNAManager();
@@ -45,7 +46,13 @@ class DlnaAndroidService extends DlnaService {
               .where((element) => element.uuid != device.uuid)
               .toList();
           searchCallback(this.devices);
-        }));
+        },
+        onPlayProgress: (PositionInfo positionInfo) {
+          if (this.positionCallback != null) {
+            this.positionCallback(positionInfo);
+          }
+        }
+    ));
   }
 
   //搜索设备
@@ -87,5 +94,10 @@ class DlnaAndroidService extends DlnaService {
   Future<void> stop() async {
     DLNAActionResult<String> result = await dlnaManager.actStop();
     print(result.result);
+  }
+
+  @override
+  Future<void> getPositionInfo() {
+
   }
 }

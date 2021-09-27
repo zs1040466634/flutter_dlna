@@ -5,6 +5,7 @@ class DlnaIosService extends DlnaService{
   MethodChannel _channel = const MethodChannel('flutter_dlna');
 
   Function searchCallback;
+  Function positionCallback;
 
   @override
   Future<void> init() async {
@@ -50,6 +51,16 @@ class DlnaIosService extends DlnaService{
   Future<void> stop() async {
     String result = await _channel.invokeMethod('stop');
     print(result);
+  }
+
+  @override
+  Future<void> getPositionInfo() async {
+    Map result = await _channel.invokeMethod('positionInfo');
+    print(result);
+    if (positionCallback != null) {
+      positionCallback(result);
+    }
+
   }
 
 }

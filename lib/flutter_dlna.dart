@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:io';
 
 import 'package:flutter_dlna/dlna_android.dart';
@@ -6,6 +7,7 @@ import 'package:flutter_dlna/dlna_ios.dart';
 
 class FlutterDlna {
   DlnaService dlnaService;
+  Timer _timer;
 
   Future<void> init() async{
     if (Platform.isIOS) {
@@ -19,6 +21,10 @@ class FlutterDlna {
 
   void setSearchCallback(Function searchCallback) {
     dlnaService.setSearchCallback(searchCallback);
+  }
+
+  void setPositionCallback(Function positionCallback) {
+    dlnaService.setPositionCallback(positionCallback);
   }
 
   //搜索设备
@@ -45,5 +51,19 @@ class FlutterDlna {
   //停止
   Future<void> stop() async{
     await dlnaService.stop();
+  }
+
+  // 获取播放进度
+  Future<void> getPositionInfo() async {
+    if (Platform.isIOS) {
+      _timer = Timer.periodic(Duration(milliseconds: 1000), (timer) async {
+        await dlnaService.getPositionInfo();
+      });
+    }
+
+  }
+
+  void dispose() {
+    _timer?.cancel();
   }
 }

@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 
 abstract class DlnaService{
   Function searchCallback;
+  Function positionCallback;
 
   @protected
   Future<void> init();
@@ -10,6 +11,11 @@ abstract class DlnaService{
   void setSearchCallback(Function searchCallback) {
     this.searchCallback = searchCallback;
   }
+
+  void setPositionCallback(Function positionCallback) {
+    this.positionCallback = positionCallback;
+  }
+
 
   //搜索设备
   @protected
@@ -30,5 +36,9 @@ abstract class DlnaService{
   //停止
   @protected
   Future<void> stop();
+
+  // 获取播放进度
+  @protected
+  Future<void> getPositionInfo();
 
 }

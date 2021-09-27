@@ -8,6 +8,8 @@
 #import "MRDLNA.h"
 #import "StopAction.h"
 
+
+
 @interface MRDLNA()<CLUPnPServerDelegate, CLUPnPResponseDelegate>
 
 @property(nonatomic,strong) CLUPnPServer *upd;              //MDS服务器
@@ -17,6 +19,8 @@
 @property(nonatomic,copy) NSString *volume;
 @property(nonatomic,assign) NSInteger seekTime;
 @property(nonatomic,assign) BOOL isPlaying;
+/// 播放进度回调
+@property (nonatomic, copy) PositionInfoBlock positionInfoBlock;
 
 @end
 
@@ -119,6 +123,13 @@
 }
 
 
+/// 获取播放进度
+- (void)getPositionInfo:(PositionInfoBlock)positionInfoBlock {
+    self.positionInfoBlock = positionInfoBlock;
+    [self.render getPositionInfo];
+    
+}
+
 /**
  播放进度单位转换成string
  */
@@ -166,6 +177,13 @@
 //    NSLog(@"%@ === %@", info.currentTransportState, info.currentTransportStatus);
     if (!([info.currentTransportState isEqualToString:@"PLAYING"] || [info.currentTransportState isEqualToString:@"TRANSITIONING"])) {
         [self.render play];
+    }
+}
+
+// 获取播放进度
+- (void)upnpGetPositionInfoResponse:(CLUPnPAVPositionInfo *)info{
+    if (self.positionInfoBlock) {
+        self.positionInfoBlock(info);
     }
 }
 

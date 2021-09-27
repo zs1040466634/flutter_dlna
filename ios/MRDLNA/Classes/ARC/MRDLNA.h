@@ -9,6 +9,8 @@
 #import "CLUPnP.h"
 #import "CLUPnPDevice.h"
 
+typedef void (^PositionInfoBlock)(CLUPnPAVPositionInfo* info);
+
 @protocol DLNADelegate <NSObject>
 
 @optional
@@ -85,8 +87,15 @@
  */
 - (void)seekChanged:(NSInteger)seek;
 
+
+/// 获取播放进度
+/// @param positionInfoBlock 进度回调
+- (void)getPositionInfo:(PositionInfoBlock)positionInfoBlock;
+
 /**
  播放切集
  */
 - (void)playTheURL:(NSString *)url;
+
+
 @end

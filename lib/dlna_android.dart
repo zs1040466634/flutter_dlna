@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:flutter/material.dart';
 import 'package:flutter_dlna/dlna_interface.dart';
 
 import 'dlna/didl.dart';
@@ -13,6 +14,7 @@ class DlnaAndroidService extends DlnaService {
   Timer searchTimer;
 
   Function searchCallback;
+  ValueChanged positionCallback;
 
   List devices = List();
   List<DLNADevice> deviceList = List();
@@ -87,6 +89,7 @@ class DlnaAndroidService extends DlnaService {
   @override
   Future<void> startAndPlay() async {
     print("you should use actSetVideoUrl");
+    await dlnaManager.actPlay();
   }
 
   //停止
@@ -99,5 +102,10 @@ class DlnaAndroidService extends DlnaService {
   @override
   Future<void> getPositionInfo() {
 
+  }
+
+  @override
+  Future<void> pause() async {
+    await dlnaManager.actPause();
   }
 }

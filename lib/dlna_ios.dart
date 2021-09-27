@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_dlna/dlna_interface.dart';
 
@@ -61,6 +62,12 @@ class DlnaIosService extends DlnaService{
       positionCallback(result);
     }
 
+  }
+
+  @override
+  Future<void> pause() async {
+    String result = await _channel.invokeMethod('pause');
+    print(result);
   }
 
 }

@@ -67,7 +67,10 @@ static FlutterMethodChannel *methodChannel;
           NSDictionary *dic = [info dictionaryWithValuesForKeys:keys];
           result(dic);
       }];
-  }else {
+  } else if([@"pause" isEqualToString:call.method]){
+      [_dlnaManager dlnaPause];
+      result(@"ios dlna pause");
+  } else {
     result(FlutterMethodNotImplemented);
   }
 }

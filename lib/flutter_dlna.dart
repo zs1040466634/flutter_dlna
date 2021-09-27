@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:io';
 
+import 'package:flutter/material.dart';
 import 'package:flutter_dlna/dlna_android.dart';
 import 'package:flutter_dlna/dlna_interface.dart';
 import 'package:flutter_dlna/dlna_ios.dart';
@@ -23,7 +24,7 @@ class FlutterDlna {
     dlnaService.setSearchCallback(searchCallback);
   }
 
-  void setPositionCallback(Function positionCallback) {
+  void setPositionCallback(ValueChanged positionCallback) {
     dlnaService.setPositionCallback(positionCallback);
   }
 

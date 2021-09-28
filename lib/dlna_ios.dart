@@ -70,4 +70,10 @@ class DlnaIosService extends DlnaService{
     print(result);
   }
 
+  @override
+  Future<void> setSeek(int time) async {
+    String result = await _channel.invokeMethod('seek', time);
+    print(result);
+  }
+
 }

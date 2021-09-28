@@ -45,4 +45,8 @@ abstract class DlnaService{
   @protected
   Future<void> getPositionInfo();
 
+ // 设置播放进度
+  @protected
+  Future<void> setSeek(int time);
+
 }

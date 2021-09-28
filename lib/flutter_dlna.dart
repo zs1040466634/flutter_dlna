@@ -51,6 +51,7 @@ class FlutterDlna {
     await dlnaService.startAndPlay();
   }
 
+
   //停止
   Future<void> stop() async{
     isPlay = false;
@@ -65,6 +66,13 @@ class FlutterDlna {
       });
     }
   }
+
+  // 设置播放进度
+
+  Future<void> setSeek(int time) async {
+    await dlnaService.setSeek(time);
+  }
+
 
   // 暂停
   Future<void> pause() async {

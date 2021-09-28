@@ -104,8 +104,16 @@ class DlnaAndroidService extends DlnaService {
 
   }
 
+
+
   @override
   Future<void> pause() async {
     await dlnaManager.actPause();
+  }
+
+  @override
+  Future<void> setSeek(int time) async {
+    // TODO: implement setSeek
+    await dlnaManager.actSeek(time);
   }
 }

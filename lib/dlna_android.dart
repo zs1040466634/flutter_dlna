@@ -116,4 +116,10 @@ class DlnaAndroidService extends DlnaService {
     // TODO: implement setSeek
     await dlnaManager.actSeek(time);
   }
+
+  @override
+  Future<void> play() async {
+    // TODO: implement play
+    await dlnaManager.actPlay();
+  }
 }

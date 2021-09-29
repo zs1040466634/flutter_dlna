@@ -74,6 +74,10 @@ class FlutterDlna {
   }
 
 
+  Future<void> play() async {
+    await dlnaService.play();
+  }
+
   // 暂停
   Future<void> pause() async {
     isPlay = false;

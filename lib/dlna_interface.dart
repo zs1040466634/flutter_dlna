@@ -33,7 +33,11 @@ abstract class DlnaService{
   @protected
   Future<void> startAndPlay() ;
 
-  //启动和播放
+  //播放
+  @protected
+  Future<void> play() ;
+
+  //暂停
   @protected
   Future<void> pause() ;
 

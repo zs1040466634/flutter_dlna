@@ -76,4 +76,11 @@ class DlnaIosService extends DlnaService{
     print(result);
   }
 
+  @override
+  Future<void> play() async {
+    // TODO: implement play
+    String result = await _channel.invokeMethod('play');
+    print(result);
+  }
+
 }

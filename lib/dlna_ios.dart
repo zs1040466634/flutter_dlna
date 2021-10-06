@@ -58,8 +58,11 @@ class DlnaIosService extends DlnaService{
   Future<void> getPositionInfo() async {
     Map result = await _channel.invokeMethod('positionInfo');
     print(result);
+
+    double trackDuration = result['trackDuration'];
+    double relTime = result['relTime'];
     if (positionCallback != null) {
-      positionCallback(result);
+      positionCallback(trackDuration > 0 ? trackDuration == relTime : false);
     }
 
   }

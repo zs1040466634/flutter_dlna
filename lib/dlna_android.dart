@@ -51,7 +51,7 @@ class DlnaAndroidService extends DlnaService {
         },
         onPlayProgress: (PositionInfo positionInfo) {
           if (this.positionCallback != null) {
-            this.positionCallback(positionInfo);
+            this.positionCallback(positionInfo.trackDurationSeconds > 0 ? positionInfo.trackDurationSeconds ==  positionInfo.trackElapsedSeconds : false);
           }
         }
     ));

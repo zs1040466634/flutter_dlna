@@ -62,7 +62,7 @@ class DlnaIosService extends DlnaService{
     double trackDuration = result['trackDuration'];
     double relTime = result['relTime'];
     if (positionCallback != null) {
-      positionCallback(relTime > 0 ? trackDuration = relTime + 1 : false);
+      positionCallback(relTime > 0 ? trackDuration == relTime + 1 : false);
     }
 
   }

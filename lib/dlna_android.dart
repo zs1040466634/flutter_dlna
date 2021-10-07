@@ -101,7 +101,10 @@ class DlnaAndroidService extends DlnaService {
 
   @override
   Future<void> getPositionInfo() async {
-    await dlnaManager.actGetPositionInfo();
+    DLNAActionResult<PositionInfo> result = await dlnaManager.actGetPositionInfo();
+    if (this.positionCallback != null) {
+      this.positionCallback(result.result.trackDurationSeconds > 0 ? result.result.trackDurationSeconds ==  result.result.trackElapsedSeconds : false);
+    }
   }
 
 

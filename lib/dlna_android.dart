@@ -100,8 +100,8 @@ class DlnaAndroidService extends DlnaService {
   }
 
   @override
-  Future<void> getPositionInfo() {
-
+  Future<void> getPositionInfo() async {
+    await dlnaManager.actGetPositionInfo();
   }
 
 

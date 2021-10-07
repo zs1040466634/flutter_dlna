@@ -60,11 +60,9 @@ class FlutterDlna {
 
   // 获取播放进度
   Future<void> getPositionInfo() async {
-    if (Platform.isIOS) {
-      _timer = Timer.periodic(Duration(milliseconds: 1000), (timer) async {
-        await dlnaService.getPositionInfo();
-      });
-    }
+    _timer = Timer.periodic(Duration(milliseconds: 1000), (timer) async {
+      await dlnaService.getPositionInfo();
+    });
   }
 
   // 设置播放进度

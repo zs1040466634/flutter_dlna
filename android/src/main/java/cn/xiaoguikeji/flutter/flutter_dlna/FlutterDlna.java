@@ -18,13 +18,13 @@ public class FlutterDlna implements FlutterPlugin, MethodCallHandler {
   private MethodChannel channel;
 
   @Override
-  public void onAttachedToEngine(@NonNull FlutterPluginBinding flutterPluginBinding) {
+  public void onAttachedToEngine( FlutterPluginBinding flutterPluginBinding) {
     channel = new MethodChannel(flutterPluginBinding.getBinaryMessenger(), "flutter_dlna");
     channel.setMethodCallHandler(this);
   }
 
   @Override
-  public void onMethodCall(@NonNull MethodCall call, @NonNull Result result) {
+  public void onMethodCall( MethodCall call,  Result result) {
     if (call.method.equals("getPlatformVersion")) {
       result.success("Android " + android.os.Build.VERSION.RELEASE);
     } else {
@@ -33,7 +33,7 @@ public class FlutterDlna implements FlutterPlugin, MethodCallHandler {
   }
 
   @Override
-  public void onDetachedFromEngine(@NonNull FlutterPluginBinding binding) {
+  public void onDetachedFromEngine( FlutterPluginBinding binding) {
     channel.setMethodCallHandler(null);
   }
 }
